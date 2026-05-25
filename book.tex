@@ -1,63 +1,64 @@
-%
-% Body text font is Palatino!
-%
-
 \documentclass[
     a5paper,
     pagesize,
-    10pt,
+    11pt,
     bibliography=totoc,
     version=last,
     numbers=noenddot,
     headings=normal,
-    DIV=9,
+    DIV=11,
+    parskip=half,
     twoside=false
 ]{scrbook}
 
-% twoside, openright
-
-%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Inizio consigli chatgpt
-
-% paragrafi con rientro
-% \KOMAoptions{DIV=last}
-
-% paragrafi con spaziatura verticale
-\KOMAoptions{
-  DIV=10,        % leggermente più aria (A5 è piccolo)
-  parskip=half   % migliore equilibrio visivo
-}
-
-\setkomafont{chapter}{\Huge\bfseries}
-\setkomafont{section}{\large\bfseries}
-
-% Titoli meno strutturati
-% \setkomafont{chapter}{\LARGE\bfseries}
-% \setkomafont{section}{\large\bfseries}
-
-% Tono più "editoriale"
-% \setkomafont{chapter}{\Huge\bfseries}
-% \setkomafont{section}{\bfseries}
-
-%%% fine consigli chatgpt
-%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage{trajan}
- 
 \usepackage[italian]{babel}
-\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{libertinus}
+\usepackage[scaled=0.96]{sourcesanspro}
 
 \usepackage[style=italian/quotes]{csquotes}
 
 \usepackage{booktabs} % tabelle
 \usepackage{colortbl} % Per aggiungere colori alla tabella
-
-\usepackage{etoolbox} % per compilazione condizionale v. righe seguenti
+\usepackage{xcolor}
 
 \usepackage{float} % per posizionare le immagini esattamente dove indicator
-
 \usepackage{scrhack} % evita un warning
+\usepackage{etoolbox} % per compilazione condizionale v. righe seguenti
+\usepackage{url}
+
+\linespread{1.1}
+
+\RedeclareSectionCommand[
+  beforeskip=2.5\baselineskip,
+  afterskip=1.5\baselineskip
+]{chapter}
+
+\RedeclareSectionCommand[
+  beforeskip=1.5\baselineskip,
+  afterskip=.8\baselineskip
+]{section}
+
+\setkomafont{chapter}{
+    \sffamily
+    \bfseries
+    \fontsize{28}{32}\selectfont
+}
+
+\setkomafont{section}{
+    \sffamily
+    \bfseries
+    \fontsize{16}{20}\selectfont
+}
+
+% elenchi puntati
+\usepackage{enumitem}
+\setlist{
+  itemsep=0.4em,
+  topsep=0.6em
+}
 
 \newbool{percorsi}
 \boolfalse{percorsi}
@@ -66,9 +67,6 @@
 \newbool{covers}
 % \boolfalse{covers}
 \booltrue{covers}
-
-\usepackage[sc]{mathpazo}
-\linespread{1.05} 
 
 \usepackage{verbatim} % for comments
 % \usepackage{listings} % for comments
