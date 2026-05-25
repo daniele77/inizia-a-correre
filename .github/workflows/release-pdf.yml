@@ -1,0 +1,39 @@
+name: Release PDF
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release-pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install LaTeX toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            latexmk \
+            texlive-xetex \
+            texlive-latex-extra \
+            texlive-fonts-extra
+
+      - name: Build PDF
+        run: latexmk -pdf book.tex
+
+      - name: Rename PDF for release
+        run: cp build/book.pdf book-${{ github.ref_name }}.pdf
+
+      - name: Create GitHub Release and upload PDF
+        uses: softprops/action-gh-release@v2
+        with:
+          files: book-${{ github.ref_name }}.pdf
+          generate_release_notes: true

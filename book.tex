@@ -12,10 +12,14 @@
 ]{scrbook}
 
 \usepackage[italian]{babel}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
 
-\usepackage{libertinus}
+% Font attuale:
+% - testo principale: STIX Two
+% - sans-serif (titoli/elementi UI): Source Sans Pro
+% Per tornare al font originale, sostituisci queste due righe con:
+% \usepackage{libertinus}
+% \usepackage[scaled=0.96]{sourcesanspro}
+\usepackage{stix2}
 \usepackage[scaled=0.96]{sourcesanspro}
 
 \usepackage[style=italian/quotes]{csquotes}
@@ -23,6 +27,10 @@
 \usepackage{booktabs} % tabelle
 \usepackage{colortbl} % Per aggiungere colori alla tabella
 \usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+
+\graphicspath{{images/}}
 
 \usepackage{float} % per posizionare le immagini esattamente dove indicator
 \usepackage{scrhack} % evita un warning
@@ -44,12 +52,14 @@
 \setkomafont{chapter}{
     \sffamily
     \bfseries
+    \color{RunBrandDark}
     \fontsize{28}{32}\selectfont
 }
 
 \setkomafont{section}{
     \sffamily
     \bfseries
+    \color{RunBrand}
     \fontsize{16}{20}\selectfont
 }
 
@@ -86,6 +96,136 @@
 %\setlength{\parskip}{1.4ex plus 0.35ex minus 0.3ex}
 
 \newcommand{\q}[1]{>>\textit{#1}<<}
+
+% ===== Style system (veste grafica) =====
+\definecolor{RunBrand}{HTML}{E4572E}
+\definecolor{RunBrandDark}{HTML}{B23A1B}
+\definecolor{RunInk}{HTML}{1F2937}
+\definecolor{RunSoft}{HTML}{F8FAFC}
+\definecolor{RunTipBg}{HTML}{FFF7ED}
+\definecolor{RunWarnBg}{HTML}{FEF2F2}
+\definecolor{RunNextBg}{HTML}{ECFDF5}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=RunBrandDark,
+    urlcolor=RunBrand,
+    citecolor=RunBrandDark
+}
+
+\setkomafont{disposition}{\sffamily\bfseries\color{RunBrandDark}}
+\addtokomafont{pageheadfoot}{\color{RunInk}}
+
+\newtcolorbox{chapterleadbox}{
+    enhanced,
+    colback=RunSoft,
+    colframe=RunBrand,
+    boxrule=0.7pt,
+    arc=1.2mm,
+    left=1.2mm,
+    right=1.2mm,
+    top=1.2mm,
+    bottom=1.2mm,
+    before skip=0.6\baselineskip,
+    after skip=1.1\baselineskip
+}
+
+% Box callout con titolo dinamico:
+% uso interno, normalmente si usano le macro \consiglio, \errorecomune, \prossimopasso.
+\newtcolorbox{tipbox}[1]{
+    enhanced,
+    colback=RunTipBg,
+    colframe=RunBrand,
+    title={\sffamily\bfseries #1},
+    fonttitle=\small,
+    boxrule=0.6pt,
+    arc=1mm,
+    left=1.1mm,
+    right=1.1mm,
+    top=1mm,
+    bottom=1mm,
+    before skip=0.8\baselineskip,
+    after skip=0.8\baselineskip
+}
+
+% Box callout per avvisi/criticità:
+% uso interno, normalmente si usa la macro \errorecomune.
+\newtcolorbox{warnbox}[1]{
+    enhanced,
+    colback=RunWarnBg,
+    colframe=RunBrandDark,
+    title={\sffamily\bfseries #1},
+    fonttitle=\small,
+    boxrule=0.6pt,
+    arc=1mm,
+    left=1.1mm,
+    right=1.1mm,
+    top=1mm,
+    bottom=1mm,
+    before skip=0.8\baselineskip,
+    after skip=0.8\baselineskip
+}
+
+% Box callout per azioni concrete e CTA:
+% uso interno, normalmente si usano \prossimopasso e \funnelcta.
+\newtcolorbox{nextstepbox}[1]{
+    enhanced,
+    colback=RunNextBg,
+    colframe=RunBrandDark,
+    title={\sffamily\bfseries #1},
+    fonttitle=\small,
+    boxrule=0.6pt,
+    arc=1mm,
+    left=1.1mm,
+    right=1.1mm,
+    top=1mm,
+    bottom=1mm,
+    before skip=0.8\baselineskip,
+    after skip=0.8\baselineskip
+}
+
+% Apertura capitolo con blocco "cosa otterrai".
+% Esempio:
+% \chapterlead{In questo capitolo scoprirai:\begin{itemize}\item ...\end{itemize}}
+\newcommand{\chapterlead}[1]{
+    \begin{chapterleadbox}
+        #1
+    \end{chapterleadbox}
+}
+
+% Evidenzia un suggerimento pratico.
+% Esempio: \consiglio{Inizia con 20 minuti a giorni alterni.}
+\newcommand{\consiglio}[1]{
+    \begin{tipbox}{Consiglio pratico}
+        #1
+    \end{tipbox}
+}
+
+% Evidenzia un errore da evitare.
+% Esempio: \errorecomune{Partire troppo forte alla prima settimana.}
+\newcommand{\errorecomune}[1]{
+    \begin{warnbox}{Errore comune}
+        #1
+    \end{warnbox}
+}
+
+% Chiude una sezione/capitolo con un'azione immediata.
+% Esempio: \prossimopasso{Nella prossima uscita alterna 1' corsa + 4' cammino.}
+\newcommand{\prossimopasso}[1]{
+    \begin{nextstepbox}{Prossimo passo}
+        #1
+    \end{nextstepbox}
+}
+
+% CTA funnel di fine capitolo (titolo + testo/URL/QR).
+% Esempio:
+% \funnelcta{Scarica il piano 4 settimane}{Vai su: tuosito.it/piano}
+\newcommand{\funnelcta}[2]{
+    \begin{nextstepbox}{Continua il percorso}
+        {\bfseries\sffamily #1}\\[0.2em]
+        #2
+    \end{nextstepbox}
+}
 
 \title{Fatti un regalo: inizia a correre}
 \author{Daniele Pallastrelli} 

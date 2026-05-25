@@ -1,0 +1,43 @@
+name: Build PDF
+
+on:
+  push:
+    paths:
+      - '**/*.tex'
+      - 'images/**'
+      - 'latexmkrc'
+      - '.github/workflows/build-pdf.yml'
+  pull_request:
+    paths:
+      - '**/*.tex'
+      - 'images/**'
+      - 'latexmkrc'
+      - '.github/workflows/build-pdf.yml'
+  workflow_dispatch:
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install LaTeX toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            latexmk \
+            texlive-xetex \
+            texlive-latex-extra \
+            texlive-fonts-extra
+
+      - name: Build PDF
+        run: latexmk -pdf book.tex
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: book-pdf
+          path: build/book.pdf
+          if-no-files-found: error
