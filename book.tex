@@ -100,6 +100,20 @@
 % \renewcommand{\progressiontablevariant}{precedente}
 % \renewcommand{\progressiontablevariant}{nuova}
 
+% Variante indice:
+% - capitoli   : mostra solo i capitoli (consigliato per opuscolo)
+% - dettagliato: mostra capitoli + sezioni
+\newcommand{\tocvariant}{capitoli}
+% \renewcommand{\tocvariant}{dettagliato}
+
+\newcommand{\applytocdepth}{
+    \ifdefstring{\tocvariant}{dettagliato}{
+        \setcounter{tocdepth}{1}
+    }{
+        \setcounter{tocdepth}{0}
+    }
+}
+
 \newcommand{\coverfontsourcesans}{\sffamily}
 \newfontfamily\coverfontheros{TeX Gyre Heros}[Scale=MatchLowercase]
 \newcommand{\coverfontstix}{\rmfamily}
@@ -158,6 +172,11 @@
 
 \setkomafont{disposition}{\sffamily\bfseries\color{RunBrandDark}}
 \addtokomafont{pageheadfoot}{\color{RunInk}}
+
+% Stile indice
+\addto\captionsitalian{\renewcommand{\contentsname}{Indice}}
+\setkomafont{chapterentry}{\sffamily\bfseries\color{RunBrandDark}}
+\setkomafont{chapterentrypagenumber}{\sffamily\bfseries\color{RunBrandDark}}
 
 \newtcolorbox{chapterleadbox}{
     enhanced,
@@ -619,7 +638,10 @@
 
 %=========================================
 
+\begingroup
+\applytocdepth
 \tableofcontents
+\endgroup
 
 %=========================================
 
