@@ -92,6 +92,14 @@
 % \renewcommand{\coverfontpreset}{stix}
 % \renewcommand{\coverfontpreset}{termes}
 
+% Variante tabella progressione:
+% - attuale    : tabella boxed con badge settimana
+% - precedente : tabella colorata semplice
+% - nuova      : tabella editoriale con colonna "fase"
+\newcommand{\progressiontablevariant}{attuale}
+% \renewcommand{\progressiontablevariant}{precedente}
+% \renewcommand{\progressiontablevariant}{nuova}
+
 \newcommand{\coverfontsourcesans}{\sffamily}
 \newfontfamily\coverfontheros{TeX Gyre Heros}[Scale=MatchLowercase]
 \newcommand{\coverfontstix}{\rmfamily}
@@ -260,6 +268,145 @@
         {\bfseries\sffamily #1}\\[0.2em]
         #2
     \end{nextstepbox}
+}
+
+\newcommand{\weekbadge}[1]{
+    \tcbox[
+        on line,
+        boxsep=1pt,
+        left=4pt,
+        right=4pt,
+        top=2pt,
+        bottom=2pt,
+        arc=1.5mm,
+        colback=RunBrandDark,
+        colframe=RunBrandDark
+    ]{\textcolor{white}{\sffamily\bfseries #1}}
+}
+
+\newcommand{\focusbadge}[1]{
+    \tcbox[
+        on line,
+        boxsep=1pt,
+        left=3pt,
+        right=3pt,
+        top=1.5pt,
+        bottom=1.5pt,
+        arc=1.2mm,
+        colback=RunBrand!10,
+        colframe=RunBrand!35
+    ]{\textcolor{RunBrandDark}{\sffamily\bfseries #1}}
+}
+
+\newcommand{\walkword}{\textcolor{RunInk}{camminata}}
+\newcommand{\runword}{\textcolor{RunBrandDark}{corsa}}
+
+\newcommand{\progressiontableprevious}{
+    \small
+    \setlength{\tabcolsep}{6pt}
+    \renewcommand{\arraystretch}{1.25}
+    \rowcolors{2}{RunBrand!8}{white}
+    \begin{tabular}{>{\centering\arraybackslash}p{0.18\linewidth} >{\raggedright\arraybackslash}p{0.66\linewidth}}
+    \toprule
+    \rowcolor{RunBrandDark}
+    \textcolor{white}{\textbf{Sett.}} & \textcolor{white}{\textbf{Allenamento}} \\
+    \midrule
+    1  & 10 volte: 5' \walkword{} + 1' \runword{} \\
+    2  & 10 volte: 4' \walkword{} + 2' \runword{} \\
+    3  & 10 volte: 3' \walkword{} + 3' \runword{} \\
+    4  & 6 volte: 5' \walkword{} + 5' \runword{} \\
+    5  & 3 volte: 10' \walkword{} + 10' \runword{} \\
+    6  & 2 volte: 10' \walkword{} + 20' \runword{} \\
+    7  & 5' \walkword{} + 25' \runword{} \\
+    8  & 5' \walkword{} + 35' \runword{} \\
+    9  & 5' \walkword{} + 45' \runword{} \\
+    10 & 1 ora di \runword{} \\
+    \bottomrule
+    \end{tabular}
+}
+
+\newcommand{\progressiontablecurrent}{
+    \begin{tcolorbox}[
+        enhanced,
+        width=0.96\linewidth,
+        colback=RunSoft,
+        colframe=RunBrand,
+        boxrule=0.7pt,
+        arc=1.5mm,
+        left=1.5mm,
+        right=1.5mm,
+        top=1.5mm,
+        bottom=1.5mm
+    ]
+    \small
+    \setlength{\tabcolsep}{6pt}
+    \renewcommand{\arraystretch}{1.32}
+    \rowcolors{2}{RunBrand!8}{white}
+    \begin{tabular}{>{\centering\arraybackslash}p{0.18\linewidth} >{\raggedright\arraybackslash}p{0.66\linewidth}}
+    \toprule
+    \rowcolor{RunBrandDark}
+    \textcolor{white}{\textbf{Settimana}} & \textcolor{white}{\textbf{Allenamento}} \\
+    \midrule
+    \weekbadge{1}  & 10 volte: 5' \walkword{} + 1' \runword{} \\
+    \weekbadge{2}  & 10 volte: 4' \walkword{} + 2' \runword{} \\
+    \weekbadge{3}  & 10 volte: 3' \walkword{} + 3' \runword{} \\
+    \weekbadge{4}  & 6 volte: 5' \walkword{} + 5' \runword{} \\
+    \weekbadge{5}  & 3 volte: 10' \walkword{} + 10' \runword{} \\
+    \weekbadge{6}  & 2 volte: 10' \walkword{} + 20' \runword{} \\
+    \weekbadge{7}  & 5' \walkword{} + 25' \runword{} \\
+    \weekbadge{8}  & 5' \walkword{} + 35' \runword{} \\
+    \weekbadge{9}  & 5' \walkword{} + 45' \runword{} \\
+    \weekbadge{10} & 1 ora di \runword{} \\
+    \bottomrule
+    \end{tabular}
+    \end{tcolorbox}
+}
+
+\newcommand{\progressiontablenew}{
+    \begin{tcolorbox}[
+        enhanced,
+        width=0.96\linewidth,
+        colback=white,
+        colframe=RunBrandDark,
+        boxrule=0.9pt,
+        arc=2mm,
+        left=1.2mm,
+        right=1.2mm,
+        top=1.2mm,
+        bottom=1.2mm
+    ]
+    {\sffamily\bfseries\color{RunBrandDark} Progressione orientativa · 10 settimane}\par\vspace{0.45em}
+    \footnotesize
+    \setlength{\tabcolsep}{5pt}
+    \renewcommand{\arraystretch}{1.24}
+    \rowcolors{2}{RunSoft}{RunBrand!5}
+    \begin{tabular}{>{\centering\arraybackslash}p{0.15\linewidth} >{\centering\arraybackslash}p{0.22\linewidth} >{\raggedright\arraybackslash}p{0.47\linewidth}}
+    \rowcolor{RunBrandDark}
+    \textcolor{white}{\textbf{Sett.}} & \textcolor{white}{\textbf{Fase}} & \textcolor{white}{\textbf{Allenamento}} \\
+    \weekbadge{1}  & \focusbadge{Avvio}      & 10 volte: 5' \walkword{} + 1' \runword{} \\
+    \weekbadge{2}  & \focusbadge{Ritmo}      & 10 volte: 4' \walkword{} + 2' \runword{} \\
+    \weekbadge{3}  & \focusbadge{Equilibrio} & 10 volte: 3' \walkword{} + 3' \runword{} \\
+    \weekbadge{4}  & \focusbadge{Svolta}     & 6 volte: 5' \walkword{} + 5' \runword{} \\
+    \weekbadge{5}  & \focusbadge{Base}       & 3 volte: 10' \walkword{} + 10' \runword{} \\
+    \weekbadge{6}  & \focusbadge{Tenuta}     & 2 volte: 10' \walkword{} + 20' \runword{} \\
+    \weekbadge{7}  & \focusbadge{Continuità} & 5' \walkword{} + 25' \runword{} \\
+    \weekbadge{8}  & \focusbadge{Autonomia}  & 5' \walkword{} + 35' \runword{} \\
+    \weekbadge{9}  & \focusbadge{Fiducia}    & 5' \walkword{} + 45' \runword{} \\
+    \weekbadge{10} & \focusbadge{Traguardo}  & 1 ora di \runword{} \\
+    \end{tabular}
+    \end{tcolorbox}
+}
+
+\newcommand{\renderprogressiontable}{
+    \ifdefstring{\progressiontablevariant}{precedente}{
+        \progressiontableprevious
+    }{
+        \ifdefstring{\progressiontablevariant}{nuova}{
+            \progressiontablenew
+        }{
+            \progressiontablecurrent
+        }
+    }
 }
 
 \title{Fatti un regalo: inizia a correre}
@@ -895,24 +1042,7 @@ potrebbe essere la progressione, puoi far riferimento alla tabella
 
 \begin{table}[ht]
 \centering
-\rowcolors{2}{gray!25}{white} % Colora alternativamente le righe
-\begin{tabular}{cl}
-\toprule
-\rowcolor{gray!50}
-\textbf{Settimana} & \textbf{Allenamento} \\
-\midrule
-1  & 10 volte 5' camminata + 1' corsa \\
-2  & 10 volte 4' camminata + 2' corsa \\
-3  & 10 volte 3' camminata + 3' corsa  \\
-4  & 6 volte 5' camminata + 5' corsa  \\
-5  & 3 volte 10' camminata + 10' corsa  \\
-6  & 2 volte 10' camminata + 20' corsa  \\
-7  & 5' camminata + 25' corsa  \\
-8  & 5' camminata + 35' corsa  \\
-9  & 5' camminata + 45' corsa  \\
-10 & 1 ora di corsa  \\
-\bottomrule
-\end{tabular}
+\renderprogressiontable
 \caption{Esempio di progressione per iniziare a correre.}
 \label{tab:esempio_progressione}
 \end{table}
