@@ -78,6 +78,41 @@
 % \boolfalse{covers}
 \booltrue{covers}
 
+\newbool{coverminimal}
+% \booltrue{coverminimal}
+\boolfalse{coverminimal}
+
+% Preset font SOLO per copertina (prima/ultima pagina):
+% - heros      : TeX Gyre Heros (più netto, meno arrotondato) [consigliato]
+% - sourcesans : Source Sans Pro (attuale)
+% - stix       : STIX Two Text (serif editoriale)
+% - termes     : TeX Gyre Termes (serif classico)
+\newcommand{\coverfontpreset}{heros}
+\renewcommand{\coverfontpreset}{sourcesans}
+% \renewcommand{\coverfontpreset}{stix}
+% \renewcommand{\coverfontpreset}{termes}
+
+\newcommand{\coverfontsourcesans}{\sffamily}
+\newfontfamily\coverfontheros{TeX Gyre Heros}[Scale=MatchLowercase]
+\newcommand{\coverfontstix}{\rmfamily}
+\newfontfamily\coverfonttermes{TeX Gyre Termes}[Scale=MatchLowercase]
+
+\newcommand{\coverfonttitle}{\coverfontheros}
+\newcommand{\coverfonttext}{\coverfontheros}
+
+\ifdefstring{\coverfontpreset}{sourcesans}{
+    \renewcommand{\coverfonttitle}{\coverfontsourcesans}
+    \renewcommand{\coverfonttext}{\coverfontsourcesans}
+}{}
+\ifdefstring{\coverfontpreset}{stix}{
+    \renewcommand{\coverfonttitle}{\coverfontstix}
+    \renewcommand{\coverfonttext}{\coverfontstix}
+}{}
+\ifdefstring{\coverfontpreset}{termes}{
+    \renewcommand{\coverfonttitle}{\coverfonttermes}
+    \renewcommand{\coverfonttext}{\coverfonttermes}
+}{}
+
 \usepackage{verbatim} % for comments
 % \usepackage{listings} % for comments
 \usepackage{xcolor} % for colorbox
@@ -249,21 +284,77 @@
 \begin{tikzpicture}[overlay,remember picture]
 \node[rotate=0] at (current page.center)
 {\includegraphics[width=\paperwidth,height=\paperheight]{front}};
-% \node[fill=white,fill opacity=0.0,text opacity=1,font=\bfseries\sffamily\Huge,text=white,align=center,inner sep=5mm,anchor=north] at 
-\node[fill=white,fill opacity=0.5,text opacity=1,font=\bfseries\sffamily\Huge,align=center,inner sep=5mm,anchor=north] at 
-([yshift=-8cm]current page.north) 
+\ifbool{coverminimal}{
+\fill[black,opacity=0.44] (current page.south west) rectangle (current page.north east);
+
+\node[
+    text=white,
+    align=center,
+    font=\bfseries\coverfonttitle,
+    anchor=north
+] at ([yshift=-6.8cm]current page.north)
 {
-%    {\fontsize{40}{48}\selectfont FATTI UN REGALO}\\
-%    {\fontsize{30}{36}\selectfont INIZIA A CORRERE}
-    {FATTI UN REGALO}\\
-    {\smaller[1] INIZIA A CORRERE}
+    {\fontsize{35}{40}\selectfont Fatti un regalo}\\[0.1em]
+    {\fontsize{27}{31}\selectfont inizia a correre}
 };
 
-\node[fill=white,fill opacity=0.5,text opacity=1,font=\bfseries\sffamily,align=center,inner sep=5mm,anchor=north] at 
-([yshift=-14cm]current page.north) 
+\node[
+    text=white,
+    align=center,
+    font=\coverfonttext\large,
+    anchor=north
+] at ([yshift=-10.6cm]current page.north)
+{Guida pratica per principianti};
+
+\node[
+    text=white,
+    font=\bfseries\coverfonttitle\Large,
+    anchor=south
+] at ([yshift=2.3cm]current page.south)
+{Daniele Pallastrelli};
+}{
+\fill[black,opacity=0.38] (current page.south west) rectangle (current page.north east);
+
+\node[
+    fill=RunBrand,
+    rounded corners=2mm,
+    text=white,
+    font=\bfseries\coverfonttitle\large,
+    inner xsep=4mm,
+    inner ysep=2mm,
+    anchor=north
+] at ([xshift=0cm,yshift=-2.2cm]current page.north)
+{Guida pratica per principianti};
+
+\node[
+    text=white,
+    align=center,
+    font=\bfseries\coverfonttitle,
+    anchor=north
+] at ([yshift=-6.1cm]current page.north)
 {
-    {\Huge Daniele Pallastrelli}
+    {\fontsize{36}{40}\selectfont Fatti un regalo}\\[0.15em]
+    {\fontsize{29}{34}\selectfont inizia a correre}
 };
+
+\node[
+    text=white,
+    align=center,
+    font=\coverfonttext,
+    anchor=north
+] at ([yshift=-10.5cm]current page.north)
+{
+    {\Large Costanza, salute e benessere}\\[-0.05em]
+    {\Large un passo alla volta}
+};
+
+\node[
+    text=white,
+    font=\bfseries\coverfonttitle\Large,
+    anchor=south
+] at ([yshift=2.2cm]current page.south)
+{Daniele Pallastrelli};
+}
 \end{tikzpicture}
 \clearpage
 
@@ -1687,6 +1778,56 @@ Just some notes, not visible in pdf.
 \begin{tikzpicture}[overlay,remember picture]
 \node[rotate=0] at (current page.center)
 {\includegraphics[width=\paperwidth,height=\paperheight]{front}};
+\ifbool{coverminimal}{
+\fill[black,opacity=0.58] (current page.south west) rectangle (current page.north east);
+
+\node[
+    text=white,
+    align=center,
+    font=\bfseries\coverfonttitle,
+    anchor=center
+] at (current page.center)
+{
+    {\fontsize{23}{27}\selectfont Inizia oggi}\\[0.55em]
+    {\large daniele77.github.io/running\_pamphlet/book.pdf}
+};
+}{
+\fill[black,opacity=0.52] (current page.south west) rectangle (current page.north east);
+
+\node[
+    text=white,
+    align=left,
+    font=\bfseries\coverfonttitle,
+    anchor=west
+] at ([xshift=1.2cm,yshift=2.2cm]current page.west)
+{
+    {\fontsize{26}{30}\selectfont Pronto a iniziare?}
+};
+
+\node[
+    text=white,
+    align=left,
+    font=\coverfonttext\large,
+    text width=0.78\paperwidth,
+    anchor=west
+] at ([xshift=1.2cm,yshift=-0.8cm]current page.west)
+{
+    Scarica il PDF aggiornato e salva questa guida:\\[0.35em]
+    \textbf{daniele77.github.io/running\_pamphlet/book.pdf}\\[1.0em]
+    Inizia oggi stesso con il primo allenamento facile.
+};
+
+\node[
+    fill=RunBrand,
+    rounded corners=2mm,
+    text=white,
+    font=\bfseries\coverfonttitle\normalsize,
+    inner xsep=4mm,
+    inner ysep=2mm,
+    anchor=south
+] at ([yshift=2.3cm]current page.south)
+{La corsa è il regalo che fai a te stesso};
+}
 \end{tikzpicture}
 \clearpage
 
