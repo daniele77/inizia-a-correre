@@ -1,0 +1,62 @@
+\ifbool{covers}{
+
+\newpage
+
+% Backcover senza scritte
+\begin{tikzpicture}[overlay,remember picture]
+\node[rotate=0] at (current page.center)
+{\includegraphics[width=\paperwidth,height=\paperheight]{front}};
+\ifbool{coverminimal}{
+\fill[black,opacity=0.58] (current page.south west) rectangle (current page.north east);
+
+\node[
+    text=white,
+    align=center,
+    font=\bfseries\coverfonttitle,
+    anchor=center
+] at (current page.center)
+{
+    {\fontsize{23}{27}\selectfont Inizia oggi}\\[0.55em]
+    {\large daniele77.github.io/running\_pamphlet/book.pdf}
+};
+}{
+\fill[black,opacity=0.52] (current page.south west) rectangle (current page.north east);
+
+\node[
+    text=white,
+    align=left,
+    font=\bfseries\coverfonttitle,
+    anchor=west
+] at ([xshift=1.2cm,yshift=2.2cm]current page.west)
+{
+    {\fontsize{26}{30}\selectfont Pronto a iniziare?}
+};
+
+\node[
+    text=white,
+    align=left,
+    font=\coverfonttext\large,
+    text width=0.78\paperwidth,
+    anchor=west
+] at ([xshift=1.2cm,yshift=-0.8cm]current page.west)
+{
+    Scarica il PDF aggiornato e salva questa guida:\\[0.35em]
+    \textbf{daniele77.github.io/running\_pamphlet/book.pdf}\\[1.0em]
+    Inizia oggi stesso con il primo allenamento facile.
+};
+
+\node[
+    fill=RunBrand,
+    rounded corners=2mm,
+    text=white,
+    font=\bfseries\coverfonttitle\normalsize,
+    inner xsep=4mm,
+    inner ysep=2mm,
+    anchor=south
+] at ([yshift=2.3cm]current page.south)
+{La corsa è il regalo che fai a te stesso};
+}
+\end{tikzpicture}
+\clearpage
+
+}{} % end ifbool{covers}

@@ -5,6 +5,17 @@
 
 Progetto LaTeX compilato con **XeLaTeX** tramite `latexmk`.
 
+## Struttura del progetto
+
+Il file `book.tex` è ora un orchestratore leggero che include i moduli principali:
+
+- `tex/preamble.tex`: pacchetti, font, colori, macro e opzioni globali.
+- `tex/frontmatter.tex`: copertina, pagine iniziali e indice.
+- `content/main.tex`: contenuto del libro (capitoli) in un unico file.
+- `tex/backcover.tex`: retro-copertina.
+
+Questa organizzazione mantiene la modifica semplice (senza un file per capitolo) e rende più facile trovare le sezioni da aggiornare.
+
 ## Requisiti
 
 Assicurati di avere installato:
@@ -45,7 +56,7 @@ Per lavorare in modo fluido, usa la compilazione continua:
 latexmk -pvc -pdf book.tex
 ```
 
-In questo modo, a ogni salvataggio di `book.tex` (o dei file inclusi) il PDF viene rigenerato automaticamente in `build/book.pdf`.
+In questo modo, a ogni salvataggio di `book.tex` o dei file inclusi (`tex/*.tex`, `content/*.tex`) il PDF viene rigenerato automaticamente in `build/book.pdf`.
 
 Per interrompere la modalità continua, premi `Ctrl+C` nel terminale.
 
@@ -74,11 +85,12 @@ latexmk -C
 
 ## GitHub Actions
 
-Sono presenti tre workflow:
+Sono presenti quattro workflow:
 
 - `build-pdf.yml`: build del PDF su push/PR con artifact scaricabile.
 - `release-pdf.yml`: build e allegato PDF automatico alle release su tag `v*`.
 - `pages-pdf.yml`: pubblicazione su GitHub Pages del PDF (`book.pdf`) con una pagina `index.html` minimale.
+- `lint-actions.yml`: validazione dei workflow GitHub Actions con `actionlint` su push/PR ai file `.github/workflows/*`.
 
 ### Attivare GitHub Pages
 

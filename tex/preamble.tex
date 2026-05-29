@@ -1,0 +1,422 @@
+\usepackage[italian]{babel}
+
+% Font attuale:
+% - testo principale: STIX Two
+% - sans-serif (titoli/elementi UI): Source Sans Pro
+% Per tornare al font originale, sostituisci queste due righe con:
+% \usepackage{libertinus}
+% \usepackage[scaled=0.96]{sourcesanspro}
+\usepackage{stix2}
+\usepackage[scaled=0.96]{sourcesanspro}
+\usepackage{lmodern}
+
+\usepackage[style=italian/quotes]{csquotes}
+
+\usepackage{booktabs} % tabelle
+\usepackage{colortbl} % Per aggiungere colori alla tabella
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+
+\graphicspath{{images/}}
+
+\usepackage{float} % per posizionare le immagini esattamente dove indicator
+\usepackage{scrhack} % evita un warning
+\usepackage{etoolbox} % per compilazione condizionale v. righe seguenti
+\usepackage{url}
+
+\linespread{1.1}
+
+\RedeclareSectionCommand[
+  beforeskip=2.5\baselineskip,
+  afterskip=1.5\baselineskip
+]{chapter}
+
+\RedeclareSectionCommand[
+  beforeskip=1.5\baselineskip,
+  afterskip=.8\baselineskip
+]{section}
+
+\setkomafont{chapter}{
+    \sffamily
+    \bfseries
+    \color{RunBrandDark}
+    \fontsize{28}{32}\selectfont
+}
+
+\setkomafont{section}{
+    \sffamily
+    \bfseries
+    \color{RunBrand}
+    \fontsize{16}{20}\selectfont
+}
+
+% elenchi puntati
+\usepackage{enumitem}
+\setlist{
+  itemsep=0.4em,
+  topsep=0.6em
+}
+
+\newbool{percorsi}
+\boolfalse{percorsi}
+% \booltrue{percorsi}
+
+\newbool{covers}
+% \boolfalse{covers}
+\booltrue{covers}
+
+\newbool{coverminimal}
+% \booltrue{coverminimal}
+\boolfalse{coverminimal}
+
+% Preset font SOLO per copertina (prima/ultima pagina):
+% - heros      : TeX Gyre Heros (più netto, meno arrotondato) [consigliato]
+% - sourcesans : Source Sans Pro (attuale)
+% - stix       : STIX Two Text (serif editoriale)
+% - termes     : TeX Gyre Termes (serif classico)
+\newcommand{\coverfontpreset}{heros}
+\renewcommand{\coverfontpreset}{sourcesans}
+% \renewcommand{\coverfontpreset}{stix}
+% \renewcommand{\coverfontpreset}{termes}
+
+% Variante tabella progressione:
+% - attuale    : tabella boxed con badge settimana
+% - precedente : tabella colorata semplice
+% - nuova      : tabella editoriale con colonna "fase"
+\newcommand{\progressiontablevariant}{attuale}
+% \renewcommand{\progressiontablevariant}{precedente}
+% \renewcommand{\progressiontablevariant}{nuova}
+
+% Variante indice:
+% - capitoli   : mostra solo i capitoli (consigliato per opuscolo)
+% - dettagliato: mostra capitoli + sezioni
+\newcommand{\tocvariant}{capitoli}
+% \renewcommand{\tocvariant}{dettagliato}
+
+\newcommand{\applytocdepth}{
+    \ifdefstring{\tocvariant}{dettagliato}{
+        \setcounter{tocdepth}{1}
+    }{
+        \setcounter{tocdepth}{0}
+    }
+}
+
+\newcommand{\coverfontsourcesans}{\sffamily}
+\newfontfamily\coverfontheros{TeX Gyre Heros}[Scale=MatchLowercase]
+\newcommand{\coverfontstix}{\rmfamily}
+\newfontfamily\coverfonttermes{TeX Gyre Termes}[Scale=MatchLowercase]
+
+\newcommand{\coverfonttitle}{\coverfontheros}
+\newcommand{\coverfonttext}{\coverfontheros}
+
+\ifdefstring{\coverfontpreset}{sourcesans}{
+    \renewcommand{\coverfonttitle}{\coverfontsourcesans}
+    \renewcommand{\coverfonttext}{\coverfontsourcesans}
+}{}
+\ifdefstring{\coverfontpreset}{stix}{
+    \renewcommand{\coverfonttitle}{\coverfontstix}
+    \renewcommand{\coverfonttext}{\coverfontstix}
+}{}
+\ifdefstring{\coverfontpreset}{termes}{
+    \renewcommand{\coverfonttitle}{\coverfonttermes}
+    \renewcommand{\coverfonttext}{\coverfonttermes}
+}{}
+
+\usepackage{verbatim} % for comments
+% \usepackage{listings} % for comments
+\usepackage{xcolor} % for colorbox
+
+\usepackage{url} % for URL
+
+\ifbool{covers}{
+\usepackage{tikz}
+\usepackage{relsize} % for \smaller
+}
+
+\usepackage{hyperref} % per i link nel sommario
+
+%\setlength{\parindent}{10pt}
+%\setlength{\parskip}{1.4ex plus 0.35ex minus 0.3ex}
+%\setlength{\parskip}{1.4ex plus 0.35ex minus 0.3ex}
+
+\newcommand{\q}[1]{>>\textit{#1}<<}
+
+% ===== Style system (veste grafica) =====
+\definecolor{RunBrand}{HTML}{E4572E}
+\definecolor{RunBrandDark}{HTML}{B23A1B}
+\definecolor{RunInk}{HTML}{1F2937}
+\definecolor{RunSoft}{HTML}{F8FAFC}
+\definecolor{RunTipBg}{HTML}{FFF7ED}
+\definecolor{RunWarnBg}{HTML}{FEF2F2}
+\definecolor{RunNextBg}{HTML}{ECFDF5}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=RunBrandDark,
+    urlcolor=RunBrand,
+    citecolor=RunBrandDark
+}
+
+\setkomafont{disposition}{\sffamily\bfseries\color{RunBrandDark}}
+\addtokomafont{pageheadfoot}{\color{RunInk}}
+
+% Stile indice
+\addto\captionsitalian{\renewcommand{\contentsname}{Indice}}
+\setkomafont{chapterentry}{\sffamily\bfseries\color{RunBrandDark}}
+\setkomafont{chapterentrypagenumber}{\sffamily\bfseries\color{RunBrandDark}}
+
+\newtcolorbox{chapterleadbox}{
+    enhanced,
+    colback=RunSoft,
+    colframe=RunBrand,
+    boxrule=0.7pt,
+    arc=1.2mm,
+    left=1.2mm,
+    right=1.2mm,
+    top=1.2mm,
+    bottom=1.2mm,
+    before skip=0.6\baselineskip,
+    after skip=1.1\baselineskip
+}
+
+% Box callout con titolo dinamico:
+% uso interno, normalmente si usano le macro \consiglio, \errorecomune, \prossimopasso.
+\newtcolorbox{tipbox}[1]{
+    enhanced,
+    colback=RunTipBg,
+    colframe=RunBrand,
+    title={\sffamily\bfseries #1},
+    fonttitle=\small,
+    boxrule=0.6pt,
+    arc=1mm,
+    left=1.1mm,
+    right=1.1mm,
+    top=1mm,
+    bottom=1mm,
+    before skip=0.8\baselineskip,
+    after skip=0.8\baselineskip
+}
+
+% Box callout per avvisi/criticità:
+% uso interno, normalmente si usa la macro \errorecomune.
+\newtcolorbox{warnbox}[1]{
+    enhanced,
+    colback=RunWarnBg,
+    colframe=RunBrandDark,
+    title={\sffamily\bfseries #1},
+    fonttitle=\small,
+    boxrule=0.6pt,
+    arc=1mm,
+    left=1.1mm,
+    right=1.1mm,
+    top=1mm,
+    bottom=1mm,
+    before skip=0.8\baselineskip,
+    after skip=0.8\baselineskip
+}
+
+% Box callout per azioni concrete e CTA:
+% uso interno, normalmente si usano \prossimopasso e \funnelcta.
+\newtcolorbox{nextstepbox}[1]{
+    enhanced,
+    colback=RunNextBg,
+    colframe=RunBrandDark,
+    title={\sffamily\bfseries #1},
+    fonttitle=\small,
+    boxrule=0.6pt,
+    arc=1mm,
+    left=1.1mm,
+    right=1.1mm,
+    top=1mm,
+    bottom=1mm,
+    before skip=0.8\baselineskip,
+    after skip=0.8\baselineskip
+}
+
+% Apertura capitolo con blocco "cosa otterrai".
+% Esempio:
+% \chapterlead{In questo capitolo scoprirai:\begin{itemize}\item ...\end{itemize}}
+\newcommand{\chapterlead}[1]{
+    \begin{chapterleadbox}
+        #1
+    \end{chapterleadbox}
+}
+
+% Evidenzia un suggerimento pratico.
+% Esempio: \consiglio{Inizia con 20 minuti a giorni alterni.}
+\newcommand{\consiglio}[1]{
+    \begin{tipbox}{Consiglio pratico}
+        #1
+    \end{tipbox}
+}
+
+% Evidenzia un errore da evitare.
+% Esempio: \errorecomune{Partire troppo forte alla prima settimana.}
+\newcommand{\errorecomune}[1]{
+    \begin{warnbox}{Errore comune}
+        #1
+    \end{warnbox}
+}
+
+% Chiude una sezione/capitolo con un'azione immediata.
+% Esempio: \prossimopasso{Nella prossima uscita alterna 1' corsa + 4' cammino.}
+\newcommand{\prossimopasso}[1]{
+    \begin{nextstepbox}{Prossimo passo}
+        #1
+    \end{nextstepbox}
+}
+
+% CTA funnel di fine capitolo (titolo + testo/URL/QR).
+% Esempio:
+% \funnelcta{Scarica il piano 4 settimane}{Vai su: tuosito.it/piano}
+\newcommand{\funnelcta}[2]{
+    \begin{nextstepbox}{Continua il percorso}
+        {\bfseries\sffamily #1}\\[0.2em]
+        #2
+    \end{nextstepbox}
+}
+
+\newcommand{\weekbadge}[1]{
+    \tcbox[
+        on line,
+        boxsep=1pt,
+        left=4pt,
+        right=4pt,
+        top=2pt,
+        bottom=2pt,
+        arc=1.5mm,
+        colback=RunBrandDark,
+        colframe=RunBrandDark
+    ]{\textcolor{white}{\sffamily\bfseries #1}}
+}
+
+\newcommand{\focusbadge}[1]{
+    \tcbox[
+        on line,
+        boxsep=1pt,
+        left=3pt,
+        right=3pt,
+        top=1.5pt,
+        bottom=1.5pt,
+        arc=1.2mm,
+        colback=RunBrand!10,
+        colframe=RunBrand!35
+    ]{\textcolor{RunBrandDark}{\sffamily\bfseries #1}}
+}
+
+\newcommand{\walkword}{\textcolor{RunInk}{camminata}}
+\newcommand{\runword}{\textcolor{RunBrandDark}{corsa}}
+
+\newcommand{\progressiontableprevious}{
+    \small
+    \setlength{\tabcolsep}{6pt}
+    \renewcommand{\arraystretch}{1.25}
+    \rowcolors{2}{RunBrand!8}{white}
+    \begin{tabular}{>{\centering\arraybackslash}p{0.18\linewidth} >{\raggedright\arraybackslash}p{0.66\linewidth}}
+    \toprule
+    \rowcolor{RunBrandDark}
+    \textcolor{white}{\sffamily\bfseries Sett.} & \textcolor{white}{\sffamily\bfseries Allenamento} \\
+    \midrule
+    1  & 10 volte: 5' \walkword{} + 1' \runword{} \\
+    2  & 10 volte: 4' \walkword{} + 2' \runword{} \\
+    3  & 10 volte: 3' \walkword{} + 3' \runword{} \\
+    4  & 6 volte: 5' \walkword{} + 5' \runword{} \\
+    5  & 3 volte: 10' \walkword{} + 10' \runword{} \\
+    6  & 2 volte: 10' \walkword{} + 20' \runword{} \\
+    7  & 5' \walkword{} + 25' \runword{} \\
+    8  & 5' \walkword{} + 35' \runword{} \\
+    9  & 5' \walkword{} + 45' \runword{} \\
+    10 & 1 ora di \runword{} \\
+    \bottomrule
+    \end{tabular}
+}
+
+\newcommand{\progressiontablecurrent}{
+    \begin{tcolorbox}[
+        enhanced,
+        width=0.96\linewidth,
+        colback=RunSoft,
+        colframe=RunBrand,
+        boxrule=0.7pt,
+        arc=1.5mm,
+        left=1.5mm,
+        right=1.5mm,
+        top=1.5mm,
+        bottom=1.5mm
+    ]
+    \small
+    \setlength{\tabcolsep}{6pt}
+    \renewcommand{\arraystretch}{1.32}
+    \rowcolors{2}{RunBrand!8}{white}
+    \begin{tabular}{>{\centering\arraybackslash}p{0.20\linewidth} >{\raggedright\arraybackslash}p{0.64\linewidth}}
+    \toprule
+    \rowcolor{RunBrandDark}
+    \textcolor{white}{\sffamily\bfseries Sett.} & \textcolor{white}{\sffamily\bfseries Allenamento} \\
+    \midrule
+    \weekbadge{1}  & 10 volte: 5' \walkword{} + 1' \runword{} \\
+    \weekbadge{2}  & 10 volte: 4' \walkword{} + 2' \runword{} \\
+    \weekbadge{3}  & 10 volte: 3' \walkword{} + 3' \runword{} \\
+    \weekbadge{4}  & 6 volte: 5' \walkword{} + 5' \runword{} \\
+    \weekbadge{5}  & 3 volte: 10' \walkword{} + 10' \runword{} \\
+    \weekbadge{6}  & 2 volte: 10' \walkword{} + 20' \runword{} \\
+    \weekbadge{7}  & 5' \walkword{} + 25' \runword{} \\
+    \weekbadge{8}  & 5' \walkword{} + 35' \runword{} \\
+    \weekbadge{9}  & 5' \walkword{} + 45' \runword{} \\
+    \weekbadge{10} & 1 ora di \runword{} \\
+    \bottomrule
+    \end{tabular}
+    \end{tcolorbox}
+}
+
+\newcommand{\progressiontablenew}{
+    \begin{tcolorbox}[
+        enhanced,
+        width=0.96\linewidth,
+        colback=white,
+        colframe=RunBrandDark,
+        boxrule=0.9pt,
+        arc=2mm,
+        left=1.2mm,
+        right=1.2mm,
+        top=1.2mm,
+        bottom=1.2mm
+    ]
+    {\sffamily\bfseries\color{RunBrandDark} Progressione orientativa · 10 settimane}\par\vspace{0.45em}
+    \footnotesize
+    \setlength{\tabcolsep}{5pt}
+    \renewcommand{\arraystretch}{1.24}
+    \rowcolors{2}{RunSoft}{RunBrand!5}
+    \begin{tabular}{>{\centering\arraybackslash}p{0.15\linewidth} >{\centering\arraybackslash}p{0.22\linewidth} >{\raggedright\arraybackslash}p{0.47\linewidth}}
+    \rowcolor{RunBrandDark}
+    \textcolor{white}{\sffamily\bfseries Sett.} & \textcolor{white}{\sffamily\bfseries Fase} & \textcolor{white}{\sffamily\bfseries Allenamento} \\
+    \weekbadge{1}  & \focusbadge{Avvio}      & 10 volte: 5' \walkword{} + 1' \runword{} \\
+    \weekbadge{2}  & \focusbadge{Ritmo}      & 10 volte: 4' \walkword{} + 2' \runword{} \\
+    \weekbadge{3}  & \focusbadge{Equilibrio} & 10 volte: 3' \walkword{} + 3' \runword{} \\
+    \weekbadge{4}  & \focusbadge{Svolta}     & 6 volte: 5' \walkword{} + 5' \runword{} \\
+    \weekbadge{5}  & \focusbadge{Base}       & 3 volte: 10' \walkword{} + 10' \runword{} \\
+    \weekbadge{6}  & \focusbadge{Tenuta}     & 2 volte: 10' \walkword{} + 20' \runword{} \\
+    \weekbadge{7}  & \focusbadge{Continuità} & 5' \walkword{} + 25' \runword{} \\
+    \weekbadge{8}  & \focusbadge{Autonomia}  & 5' \walkword{} + 35' \runword{} \\
+    \weekbadge{9}  & \focusbadge{Fiducia}    & 5' \walkword{} + 45' \runword{} \\
+    \weekbadge{10} & \focusbadge{Traguardo}  & 1 ora di \runword{} \\
+    \end{tabular}
+    \end{tcolorbox}
+}
+
+\newcommand{\renderprogressiontable}{
+    \ifdefstring{\progressiontablevariant}{precedente}{
+        \progressiontableprevious
+    }{
+        \ifdefstring{\progressiontablevariant}{nuova}{
+            \progressiontablenew
+        }{
+            \progressiontablecurrent
+        }
+    }
+}
+
+\title{Fatti un regalo: inizia a correre}
+\author{Daniele Pallastrelli} 
+\date{\today} 
+

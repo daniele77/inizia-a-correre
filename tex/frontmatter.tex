@@ -1,0 +1,209 @@
+%=========================================
+
+\ifbool{covers}{
+
+% \begin{tikzpicture}[overlay,remember picture]
+% \node[rotate=0] at (current page.center)
+% {\includegraphics[width=\paperwidth,height=\paperheight]{front}};
+% \node[fill=white,fill opacity=0.5,text opacity=1,font=\bfseries\sffamily,align=left,inner  sep=5mm,anchor=north] at 
+% ([yshift=-1cm]current page.north) 
+% {{\Huge Fatti un regalo: inzia a correre}\\ {\Large Daniele Pallastrelli}};
+% \end{tikzpicture}
+% \clearpage
+
+\begin{tikzpicture}[overlay,remember picture]
+\node[rotate=0] at (current page.center)
+{\includegraphics[width=\paperwidth,height=\paperheight]{front}};
+\ifbool{coverminimal}{
+\fill[black,opacity=0.44] (current page.south west) rectangle (current page.north east);
+
+\node[
+    text=white,
+    align=center,
+    font=\bfseries\coverfonttitle,
+    anchor=north
+] at ([yshift=-6.8cm]current page.north)
+{
+    {\fontsize{35}{40}\selectfont Fatti un regalo}\\[0.1em]
+    {\fontsize{27}{31}\selectfont inizia a correre}
+};
+
+\node[
+    text=white,
+    align=center,
+    font=\coverfonttext\large,
+    anchor=north
+] at ([yshift=-10.6cm]current page.north)
+{Guida pratica per principianti};
+
+\node[
+    text=white,
+    font=\bfseries\coverfonttitle\Large,
+    anchor=south
+] at ([yshift=2.3cm]current page.south)
+{Daniele Pallastrelli};
+}{
+\fill[black,opacity=0.38] (current page.south west) rectangle (current page.north east);
+
+\node[
+    fill=RunBrand,
+    rounded corners=2mm,
+    text=white,
+    font=\bfseries\coverfonttitle\large,
+    inner xsep=4mm,
+    inner ysep=2mm,
+    anchor=north
+] at ([xshift=0cm,yshift=-2.2cm]current page.north)
+{Guida pratica per principianti};
+
+\node[
+    text=white,
+    align=center,
+    font=\bfseries\coverfonttitle,
+    anchor=north
+] at ([yshift=-6.1cm]current page.north)
+{
+    {\fontsize{36}{40}\selectfont Fatti un regalo}\\[0.15em]
+    {\fontsize{29}{34}\selectfont inizia a correre}
+};
+
+\node[
+    text=white,
+    align=center,
+    font=\coverfonttext,
+    anchor=north
+] at ([yshift=-10.5cm]current page.north)
+{
+    {\Large Costanza, salute e benessere}\\[-0.05em]
+    {\Large un passo alla volta}
+};
+
+\node[
+    text=white,
+    font=\bfseries\coverfonttitle\Large,
+    anchor=south
+] at ([yshift=2.2cm]current page.south)
+{Daniele Pallastrelli};
+}
+\end{tikzpicture}
+\clearpage
+
+}{
+
+\begin{titlepage}
+		\centering{
+			{\fontsize{40}{48}\selectfont 
+			Fatti un regalo: inizia a correre}
+		}\\
+			
+		\vspace{10mm}
+		\centering{\Large{Daniele Pallastrelli}}\\
+		\vspace{\fill}
+		\centering \large{2025}
+\end{titlepage}
+
+}
+
+%=========================================
+
+\begin{comment}
+
+"Se vuoi correre, corri un miglio. Se vuoi vivere un’altra vita, corri una maratona."
+-- Emil Zatopek
+
+"La corsa è come una grande metafora della vita. Devi affrontare ogni sfida, un passo alla volta, imparando a convivere con i tuoi limiti e superandoli."
+-- Bill Rodgers
+
+"La corsa è la miglior medicina. È semplice, gratuita e a lungo termine regala salute e benessere."
+-- Grete Waitz
+
+\newpage{}
+\thispagestyle {empty}
+
+\vspace*{2cm}
+
+\begin{center}
+	\Large{\parbox{8cm}{
+		\begin{raggedright}
+		{\Large 
+			\textit{Amo l'atletica perché è poesia.\\
+			Se la notte sogno, 
+			sogno di essere un maratoneta.}
+		}
+	
+		\vspace{.5cm}\hfill{---Eugenio Montale}
+		\end{raggedright}
+	}
+}
+\end{center}
+
+\newpage{}
+\thispagestyle {empty}
+
+\vspace*{2cm}
+
+\begin{center}
+	\Large{\parbox{8cm}{
+		\begin{raggedright}
+		{\Large 
+			\textit{La corsa è la miglior medicina. È semplice, gratuita e a lungo termine regala salute e benessere.}
+		}
+	
+		\vspace{.5cm}\hfill{---Grete Waitz}
+		\end{raggedright}
+	}
+}
+\end{center}
+
+\newpage{}
+\thispagestyle {empty}
+
+\vspace*{2cm}
+
+\begin{center}
+	\Large{\parbox{9cm}{
+		\begin{raggedright}
+		{\Large 
+			\textit{Non è possibile dire cosa ti spinga a correre;
+                    è qualcosa che hai dentro.\\
+                    È solo quando corri che capisci cosa stai cercando.}
+		}
+
+		\vspace{.5cm}\hfill{-- Haruki Murakami, L'arte di correre}
+		\end{raggedright}
+	}
+
+
+}
+\end{center}
+
+\end{comment}
+
+\newpage{}
+\thispagestyle {empty}
+
+\vspace*{2cm}
+
+\begin{center}
+	\Large{\parbox{8cm}{
+		\begin{raggedright}
+		{\Large 
+			\textit{La corsa è la miglior medicina.\\
+                  È semplice, gratuita e a lungo termine regala salute e benessere.}
+		}
+	
+		\vspace{.5cm}\hfill{--- Grete Waitz}
+		\end{raggedright}
+	}
+}
+\end{center}
+
+\newpage
+
+%=========================================
+
+\begingroup
+\applytocdepth
+\tableofcontents
+\endgroup
+
