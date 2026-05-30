@@ -2,22 +2,23 @@
 
 [![Pages online](https://img.shields.io/badge/Pages-online-2ea44f)](https://daniele77.github.io/inizia-a-correre/)
 [![Download PDF](https://img.shields.io/badge/PDF-download-2ea44f)](https://daniele77.github.io/inizia-a-correre/book.pdf)
-[![Licenza: CC BY-NC-SA 4.0](https://img.shields.io/badge/Licenza-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it)
+[![Licenza: PDF redistribution only](https://img.shields.io/badge/Licenza-PDF%20redistribution%20only-lightgrey.svg)](#licenza)
 
 Progetto LaTeX compilato con **XeLaTeX** tramite `latexmk`.
 
 ## Licenza
 
-Quest'opera è distribuita con licenza **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)**.
+Quest'opera è distribuita con una **licenza personalizzata di redistribuzione del PDF**.
 
-- Testo completo della licenza: `LICENSE`
-- Sintesi leggibile: <https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it>
+- Testo completo della licenza: [LICENSE](LICENSE)
+- Regola principale: è consentita solo la distribuzione gratuita del PDF completo e non modificato.
+- Non sono consentite modifiche, adattamenti, traduzioni, estratti o riproduzioni parziali, salvo i casi previsti dalla legge.
 
 ### Attribuzione consigliata
 
-Se riusi o adatti questo materiale, puoi usare questa formula:
+Se distribuisci il PDF completo e invariato, puoi usare questa formula:
 
-> Pallastrelli, Daniele. *Fatti un regalo: inizia a correre*. Licenza CC BY-NC-SA 4.0. Repo: <https://github.com/daniele77/inizia-a-correre>
+> Pallastrelli, Daniele. *Fatti un regalo: inizia a correre*. PDF distribuito con licenza personalizzata di sola redistribuzione del file completo. Repo: <https://github.com/daniele77/inizia-a-correre>
 
 ## Struttura del progetto
 
