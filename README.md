@@ -1,9 +1,23 @@
 # Opuscolo "Iniziare a correre"
 
-[![Pages online](https://img.shields.io/badge/Pages-online-2ea44f)](https://daniele77.github.io/running_pamphlet/)
-[![Download PDF](https://img.shields.io/badge/PDF-download-2ea44f)](https://daniele77.github.io/running_pamphlet/book.pdf)
+[![Pages online](https://img.shields.io/badge/Pages-online-2ea44f)](https://daniele77.github.io/inizia-a-correre/)
+[![Download PDF](https://img.shields.io/badge/PDF-download-2ea44f)](https://daniele77.github.io/inizia-a-correre/book.pdf)
+[![Licenza: CC BY-NC-SA 4.0](https://img.shields.io/badge/Licenza-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it)
 
 Progetto LaTeX compilato con **XeLaTeX** tramite `latexmk`.
+
+## Licenza
+
+Quest'opera è distribuita con licenza **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)**.
+
+- Testo completo della licenza: `LICENSE`
+- Sintesi leggibile: <https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it>
+
+### Attribuzione consigliata
+
+Se riusi o adatti questo materiale, puoi usare questa formula:
+
+> Pallastrelli, Daniele. *Fatti un regalo: inizia a correre*. Licenza CC BY-NC-SA 4.0. Repo: <https://github.com/daniele77/inizia-a-correre>
 
 ## Struttura del progetto
 
@@ -106,9 +120,9 @@ Dopo un push su `main`/`master` (o esecuzione manuale del workflow), il PDF sar�
 Badge già configurato per questo repository:
 
 ```md
-[![Pages online](https://img.shields.io/badge/PDF-GitHub%20Pages-blue)](https://daniele77.github.io/running_pamphlet/)
+[![Pages online](https://img.shields.io/badge/PDF-GitHub%20Pages-blue)](https://daniele77.github.io/inizia-a-correre/)
 ```
 
 Esempio URL del PDF pubblicato:
 
-- `https://daniele77.github.io/running_pamphlet/book.pdf`
+- `https://daniele77.github.io/inizia-a-correre/book.pdf`
